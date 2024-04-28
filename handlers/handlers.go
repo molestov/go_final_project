@@ -159,7 +159,7 @@ func TasksRead(w http.ResponseWriter, r *http.Request) {
 	var tasks []models.Task
 	var err error
 
-	if tasks, err = database.ReadTasks(); err != nil {
+	if tasks, err = database.GetTasks(); err != nil {
 		responseWithError(w, err)
 		return
 	}
@@ -189,7 +189,7 @@ func TaskReadByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if task, err = database.ReadTaskByID(uint(id)); err != nil {
+	if task, err = database.GetTaskById(uint(id)); err != nil {
 		responseWithError(w, err)
 		return
 	}
@@ -218,7 +218,7 @@ func TaskUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if _, err := database.ReadTaskByID(task.ID); err != nil {
+	if _, err := database.GetTaskById(task.ID); err != nil {
 		responseWithError(w, err)
 		return
 	}
@@ -280,7 +280,7 @@ func TaskDone(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if task, err = database.ReadTaskByID(uint(id)); err != nil {
+	if task, err = database.GetTaskById(uint(id)); err != nil {
 		responseWithError(w, err)
 		return
 	}
@@ -327,7 +327,7 @@ func TaskDelete(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if task, err = database.ReadTaskByID(uint(id)); err != nil {
+	if task, err = database.GetTaskById(uint(id)); err != nil {
 		responseWithError(w, err)
 		return
 	}

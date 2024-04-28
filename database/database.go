@@ -40,17 +40,17 @@ func ConnectDB() {
 	Db = db
 }
 
-func ReadTasks() ([]models.Task, error) {
+func GetTasks() ([]models.Task, error) {
 	var tasks []models.Task
 	result := Db.Order("date").Limit(30).Find(&tasks)
 	return tasks, result.Error
 }
 
-func ReadTaskByID(id uint) (models.Task, error) {
+func GetTaskById(id uint) (models.Task, error) {
 	var tasks models.Task
 	result := Db.Limit(1).Find(&tasks, models.Task{ID: id})
 	if result.RowsAffected == 0 {
-		return tasks, errors.New("No record found")
+		return tasks, errors.New("no record found")
 	}
 	return tasks, result.Error
 }
