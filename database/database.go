@@ -11,6 +11,8 @@ import (
 	"gorm.io/gorm/logger"
 )
 
+const DB_QUERY_LIMIT = 30
+
 var Db *gorm.DB
 
 func getDBPath() string {
@@ -42,7 +44,7 @@ func ConnectDB() {
 
 func GetTasks() ([]models.Task, error) {
 	var tasks []models.Task
-	result := Db.Order("date").Limit(30).Find(&tasks)
+	result := Db.Order("date").Limit(DB_QUERY_LIMIT).Find(&tasks)
 	return tasks, result.Error
 }
 
