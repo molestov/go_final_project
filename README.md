@@ -3,3 +3,11 @@
 В директории `tests` находятся тесты для проверки API, которое должно быть реализовано в веб-сервере.
 
 Директория `web` содержит файлы фронтенда.
+
+Сборка образа: `docker build --tag go_final_project .`
+
+Запуск контейнера: `docker run -d -p 7540:7540 -v host-volume:/db go_final_project`
+
+Запуск тестов: `go test ./tests`
+
+Запуск контейнера с измененными параметрами: `docker run -e VARIABLE=VALUE...`
